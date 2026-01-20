@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 public class JwtUtil {
-    private static final Key key = Keys.hmacShaKeyFor("b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACAI3kjHTNEpp2CZNaXJp6psbxiRcnRvWkBwGeWlTX/TFgAAAKD/ipye/4qc".getBytes());
+    private static final Key key = Keys.hmacShaKeyFor(System.getenv("JWT_KEY").getBytes());
 
     public static String generateToken(String username) {
         return Jwts.builder()
