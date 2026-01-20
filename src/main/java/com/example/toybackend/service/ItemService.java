@@ -4,6 +4,7 @@ import com.example.toybackend.dto.CreateItemRequest;
 import com.example.toybackend.dto.ItemResponse;
 import com.example.toybackend.model.Item;
 import com.example.toybackend.repository.ItemRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,25 @@ public class ItemService {
         Item saved = repo.save(item);
 
         return toResponse(saved);
+    }
+
+    public List<ItemResponse> getAll() {
+        return repo.findAll().stream().map(this::toResponse).toList();
+    }
+
+    public ItemResponse getOne(Long id) {
+        Item item = repo.findById(id).orElseThrow();
+        return toResponse(item);
+    }
+
+    public ItemResponse update(Long id, CreateItemRequest req) {
+        Item item = repo.findById(id).orElseThrow();
+        item.setName(req.getName());
+        return toResponse(repo.save(item));
+    }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
     }
 
     private ItemResponse toResponse(Item item) {
