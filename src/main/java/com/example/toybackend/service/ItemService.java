@@ -2,6 +2,7 @@ package com.example.toybackend.service;
 
 import com.example.toybackend.dto.CreateItemRequest;
 import com.example.toybackend.dto.ItemResponse;
+import com.example.toybackend.exception.ItemNotFoundException;
 import com.example.toybackend.model.Item;
 import com.example.toybackend.repository.ItemRepository;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ItemService {
     }
 
     public ItemResponse getOne(Long id) {
-        Item item = repo.findById(id).orElseThrow();
+        Item item = repo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
         return toResponse(item);
     }
 
