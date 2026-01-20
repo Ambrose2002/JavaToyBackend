@@ -3,9 +3,9 @@ package com.example.toybackend.dto;
 import java.time.Instant;
 
 public class ItemResponse {
-    private Long id;
-    private String name;
-    private Instant createdAt;
+    private final Long id;
+    private final String name;
+    private final Instant createdAt;
 
     public ItemResponse(Long id, String name, Instant createdAt) {
         this.id = id;
