@@ -3,6 +3,7 @@ package com.example.toybackend.controller;
 import com.example.toybackend.dto.CreateItemRequest;
 import com.example.toybackend.dto.ItemResponse;
 import com.example.toybackend.service.ItemService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public ItemResponse create(@RequestBody CreateItemRequest req) {
+    public ItemResponse create(@Valid @RequestBody CreateItemRequest req) {
         return service.create(req);
     }
 
@@ -39,7 +40,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public ItemResponse update (@PathVariable Long id, @RequestBody CreateItemRequest req) {
+    public ItemResponse update (@PathVariable Long id, @Valid @RequestBody CreateItemRequest req) {
         return service.update(id, req);
     }
 
