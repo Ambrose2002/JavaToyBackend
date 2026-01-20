@@ -34,7 +34,7 @@ public class ItemService {
     }
 
     public ItemResponse update(Long id, CreateItemRequest req) {
-        Item item = repo.findById(id).orElseThrow();
+        Item item = repo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
         item.setName(req.getName());
         return toResponse(repo.save(item));
     }
