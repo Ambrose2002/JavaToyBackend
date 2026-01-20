@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/toydb
     username: toyuser
-    password: password
+    password: 'password'
 
   jpa:
     hibernate:
