@@ -1,10 +1,13 @@
 package com.example.toybackend.config;
 
 import com.example.toybackend.security.JwtFilter;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 public class SecurityConfig {
 
     @Bean
@@ -19,5 +22,10 @@ public class SecurityConfig {
                         org.springframework.security.web.authentication.
                         UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+
+    @PostConstruct
+    public void loaded() {
+        System.out.println(">>> SecurityConfig LOADED <<<");
     }
 }
